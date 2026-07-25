@@ -35,8 +35,7 @@ console.log("Hii");
 // console.log(customer);
 
 // ---------------------------------------------------
-
-const customerList = JSON.parse(localStorage.getItem("customerList"));
+/*const customerList = JSON.parse(localStorage.getItem("customerList"));
 
 function btnAddCustomerOnAction() {
     //  let customerList = JSON.parse(localStorage.getItem("customerList"));
@@ -117,4 +116,9 @@ function btnLoadTableOnAction() {
     console.log(body);
     
 
-}
+}*/
+ const apikey = "9ca1367e0d0148259d370747262507";
+
+ const baseurl = "http://api.weatherapi.com/v1";
+
+ 
