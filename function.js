@@ -36,9 +36,10 @@ console.log("Hii");
 
 // ---------------------------------------------------
 
-const customerList = [];
+const customerList = JSON.parse(localStorage.getItem("customerList"));
 
 function btnAddCustomerOnAction() {
+    //  let customerList = JSON.parse(localStorage.getItem("customerList"));
     let customer = {
         id: document.getElementById("txtCustomerId").value,
         name: document.getElementById("txtCustomerName").value,
@@ -49,12 +50,8 @@ function btnAddCustomerOnAction() {
 
     customerList.push(customer);
 
-
-
-        console.log(customerList);
-
     localStorage.setItem("customerList", JSON.stringify(customerList));
-
+    btnLoadTableOnAction();
 
     // alert("add customer")
 }
@@ -89,10 +86,8 @@ function btnDeleteByIdOnAction() {
     localStorage.setItem("customerList", JSON.stringify(customerList));
 
     console.log(customerList);
-    
-
-
 }
+
 
 function btnUpdateByIdOnAction() {
     alert("update customer");
@@ -103,5 +98,23 @@ function btnClearStorageOnAction() {
 }
 
 function btnLoadTableOnAction() {
-    alert("load table");
+    let customerList = JSON.parse(localStorage.getItem("customerList"));
+
+    let body = "";
+    customerList.forEach(element => {
+        body+=`
+                <tr>
+            <td>${element.id}</td>
+            <td>${element.name}</td>
+            <td>${element.age}</td>
+            <td>${element.address}</td>
+        </tr>
+        `
+    });
+
+    document.getElementById("tblCustomer").innerHTML=body;
+
+    console.log(body);
+    
+
 }
