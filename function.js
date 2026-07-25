@@ -36,52 +36,72 @@ console.log("Hii");
 
 // ---------------------------------------------------
 
-const customerList =[];
+const customerList = [];
 
-function btnAddCustomerOnAction(){
+function btnAddCustomerOnAction() {
     let customer = {
-        id:document.getElementById("txtCustomerId").value,
-        name:document.getElementById("txtCustomerName").value,
-        age:document.getElementById("txtCustomerAge").value,
-        address:document.getElementById("txtCustomerAddress").value
+        id: document.getElementById("txtCustomerId").value,
+        name: document.getElementById("txtCustomerName").value,
+        age: document.getElementById("txtCustomerAge").value,
+        address: document.getElementById("txtCustomerAddress").value
     }
     console.log(customer);
 
     customerList.push(customer);
 
-    console.log(customerList);
-    
-    localStorage.setItem("customerList",JSON.stringify(customerList));
+
+
+        console.log(customerList);
+
+    localStorage.setItem("customerList", JSON.stringify(customerList));
+
 
     // alert("add customer")
 }
 
-function btnSearchByIdOnAction(){
-    let sId = document.getElementById("txtCustomerId").value;
+function btnSearchByIdOnAction() {
+    let customerList = JSON.parse(localStorage.getItem("customerList"));
 
-    for(let i = 0; i < customerList.length; i++){
+    let customer = customerList.find(customer => {
+        return customer.id === document.getElementById("txtCustomerId").value
+    });
 
-        if(sId===customerList[i].id){
-            document.getElementById("txtCustomerName").innerHTML=customerList[i].name;
-            break;
-        }
-        
-    }
-    //alert("search customer")
+
+    document.getElementById("txtCustomerName").value = customer.name;
+    document.getElementById("txtCustomerAge").value = customer.age;
+    document.getElementById("txtCustomerAddress").value = customer.address;
+
+
+    // alert("search customer")
 }
 
-function btnDeleteByIdOnAction(){
-    alert("delete customer");
+function btnDeleteByIdOnAction() {
+    let customerList = JSON.parse(localStorage.getItem("customerList"));
+
+    let customerId = document.getElementById("txtCustomerId").value;
+
+    let index = customerList.findIndex(customer =>{
+        return customer.id === customerId;
+    })
+
+    customerList.splice(index,1);
+
+    localStorage.setItem("customerList", JSON.stringify(customerList));
+
+    console.log(customerList);
+    
+
+
 }
 
-function btnUpdateByIdOnAction(){
+function btnUpdateByIdOnAction() {
     alert("update customer");
 }
 
-function btnClearStorageOnAction(){
+function btnClearStorageOnAction() {
     localStorage.clear();
 }
 
-function btnLoadTableOnAction(){
+function btnLoadTableOnAction() {
     alert("load table");
 }
